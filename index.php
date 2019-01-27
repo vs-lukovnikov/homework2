@@ -7,6 +7,7 @@ $categories = [
   ['title' => 'some', 'id' => 4, 'parent' => 3, 'depth' => 2],
   ['title' => 'some', 'id' => 5, 'parent' => 2, 'depth' => 2],
   ['title' => 'some', 'id' => 6, 'parent' => 5, 'depth' => 3],
+  ['title' => 'some', 'id' => 7, 'parent' => 6, 'depth' => 4],
 ];
 
 $res = [
@@ -30,10 +31,10 @@ function maxDepth(array $arr) {
   return $res;
 }
 
-function findDeepestElements(array &$elements, $elem, &$current_depth) {
+function findDeepiestElements(array &$elements, $elem) {
   foreach ($elements as $key => &$element) {
     if ($elem['parent'] == $element['id']) {
-      $element['children'] = $elem;
+      $element['children'][] = $elem;
       }
     if ($element['id'] == $elem['id']) {
       unset($elements[$key]);
@@ -45,45 +46,18 @@ function findDeepestElements(array &$elements, $elem, &$current_depth) {
 }
 
 function build(array &$array) {
-  //  $result = [];
   $depth = maxDepth($array);
   while ($depth ) {
     foreach ($array as $key => $element) {
       if ($element['depth'] == $depth) {
-        findDeepestElements($array, $element, $depth);
-        $depth--;
+        findDeepiestElements($array, $element);
       }
     }
+    $depth--;
   }
-  //  findDeepestElements($array, $depth);
-  //  while($depth) {
-  //    foreach ($array as $key => $element) {
-  //      if ($element['depth'] == maxDepth($array)) {
-  //        $result[] = $element;
-  //      }
-  //      else {
-  //        elementBuilder($result, $element, $depth);
-  //      }
-  //    }
-  //  }
-
   return $array;
 }
 
-//function elementBuilder (&$arr, $elem, &$cur_depth ) {
-//  foreach ($arr as $key => &$parent ) {
-//    if ($elem['id'] === $parent['parent']) {
-//      $elem['children'] = &$parent;
-//      $arr[] = $elem;
-//    }
-//    else {
-//        if(isset($parent['children'])) {
-//          elementBuilder($parent['children'], $elem, $cur_depth);
-//        }
-//    }
-//  }
-//  return $arr;
-//}
 
 ?>
 
