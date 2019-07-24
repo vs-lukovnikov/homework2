@@ -19,7 +19,7 @@ for($current_height = 0; $current_height < $height; $current_height++) {
   for($current_length = 0; $current_length < $length; $current_length++) {
     $number = 0;
     for($current_count = 0;  $current_count < $count; $current_count++) {
-      $num += $matrix_first[$current_height][$current_count]*$matrix_second[$current_count][$current_length];
+      $number += $matrix_first[$current_height][$current_count]*$matrix_second[$current_count][$current_length];
       }
       $result[$current_height][$current_length] = $number;
 
